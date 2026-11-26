@@ -1,0 +1,2 @@
+# Git no debe convertir finales de linea: cambiaria los hashes SHA-256
+datos_octubre/** -text
