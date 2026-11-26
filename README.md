@@ -36,7 +36,7 @@ Los datos (`data/`) y los resultados (`outputs/`) los lee y escribe el notebook 
 La key **no está incluida en el repositorio**. Cada persona usa la suya.
 
 1. Creá una cuenta en [FRED](https://fred.stlouisfed.org/) y pedí una API key gratuita.
-2. En Colab, abrí **Secrets** (ícono de la llave 🔑).
+2. En Colab, abrí **Secrets**.
 3. Agregá un secreto llamado `FRED_API_KEY` con tu key como valor.
 4. Activá el acceso del notebook a ese secreto.
 
@@ -96,7 +96,7 @@ Se definen con `os.environ[...]` antes de ejecutar los Jobs. Quedan activas hast
 
 ## 4. Guía de uso
 
-> ⚠️ **No uses "Ejecutar todo".** Debajo del título del Job 4 hay una celda de prueba que empieza con `!cp -r ... ejecucion_3 ... prueba_oct`. Cambia la carpeta base a `prueba_oct` y el modo a `snapshot` para todo lo que sigue. **Salteala en las dos opciones de abajo.** Además, en modo `snapshot` los Jobs 1 a 3 terminan con `SystemExit(0)`: es su final normal.
+> **No uses "Ejecutar todo".** Debajo del título del Job 4 hay una celda de prueba que empieza con `!cp -r ... ejecucion_3 ... prueba_oct`. Cambia la carpeta base a `prueba_oct` y el modo a `snapshot` para todo lo que sigue. **Salteala en las dos opciones de abajo.** Además, en modo `snapshot` los Jobs 1 a 3 terminan con `SystemExit(0)`: es su final normal.
 
 Si ya ejecutaste esa celda, reiniciá el entorno antes de seguir.
 
@@ -291,20 +291,3 @@ Genera y descarga `resultados.html` con las salidas de las celdas de código, si
 
 ---
 
-## 8. Problemas frecuentes
-
-| Mensaje o síntoma | Qué revisar |
-|---|---|
-| `FRED_API_KEY no configurada` | El secreto, su nombre y el acceso del notebook. Para reproducir, usá `snapshot` |
-| `SystemExit: 0` en Jobs 1 a 3 | Es el final normal en modo `snapshot` |
-| `Job 3: ... no figura en manifest.json` | El manifest atribuye las series al 3m. Seguí la opción A y empezá en el Job 4 |
-| `Job 4: falta ... series_largas_ext.csv` | Copialo a `data/processed/`, o ejecutá antes el Job 3 si estás descargando |
-| `el hash ... no coincide` | La entrada no es la que registra el manifest. Restaurá el par correcto; no edites el hash a mano |
-| Aparece `prueba_oct` en las rutas | Se ejecutó la celda `!cp`. Reiniciá el entorno y salteala |
-| El Job 3m o 17 no encuentra archivos | Falta el maestro o `ejecucion_4` en `TESIS_OUT_DIR` |
-
----
-
-## 9. Seguridad
-
-No subas al repositorio API keys, archivos que las contengan (por ejemplo, `fred_apikey.txt` o `.env`) ni credenciales de Google. Antes de publicar cambios, revisá también las salidas guardadas de los notebooks.
